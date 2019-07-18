@@ -12,7 +12,8 @@ After the user has entered an existing item id and quantity, the application wil
 
 Lastly, the user will be notified the total cost of their purchase. Then, they will be prompted if they would like to make another purchase or end their shopping session. 
 
-
+MySQL Preview 
 ![](images/mysql.bamazon.png) 
 
+Click on the link below for a demo: 
 https://youtu.be/pljztROyUFw 
