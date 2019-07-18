@@ -15,4 +15,4 @@ Lastly, the user will be notified the total cost of their purchase. Then, they w
 
 ![](images/mysql.bamazon.png) 
 
-![](https://youtu.be/pljztROyUFw)
+https://youtu.be/pljztROyUFw 
