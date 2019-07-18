@@ -26,7 +26,7 @@ function viewProducts() {
 
 function inputValidator(input) {
     var asNumber = parseInt(input);
-    return !isNaN(asNumber) ? true : "Please enter a number";
+    return !isNaN(asNumber) ? true : "Please enter a number.";
 }
 
 function userSelection() {
@@ -42,7 +42,6 @@ function userSelection() {
             type: "input",
             message: "How many would you like to buy?",
             validate: inputValidator
-
         }
     ]).then(function (input) {
         connection.query("SELECT * FROM products WHERE item_id=?", [input.idSelection.trim()], function (error, response) {
@@ -51,7 +50,7 @@ function userSelection() {
                 console.log("That product id does not exist. Please enter another id number.");
             }
             else {
-                stockUpdate(response[0], input.quantitySelection, input.idSelection);
+                stockUpdate(response[0], input.idSelection, input.quantitySelection);
             }
         });
     }).catch(function (error) {
@@ -59,24 +58,17 @@ function userSelection() {
     });
 }
 
-function stockUpdate(item, quantity, id) {
-    if (item.stock_quantity >= quantity) {
-        var newStockQuantity = item.stock_quantity - quantity;
-        connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newStockQuantity, id.trim()], function (error, response) {
+function stockUpdate(input,id, quantitySelection ) {
+    if (input.stock_quantity >= quantitySelection) {
+        var newStockQuantity = input.stock_quantity - quantitySelection;
+      var query=  connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newStockQuantity, id.trim()], function (error, response) {
             if (error) throw error;
-            console.log("Your sale total is: " + "$" + item.price * quantity)
-            // shopAgain(); 
+            console.log("Your sale total is: " + "$" + input.price * quantitySelection);
+            viewProducts();
         });
     }
     else {
         console.log("There is not enough in stock to make this sale. Please select a different quantity.")
-        // userSelection(); 
+        userSelection();
     }
-}
-
-// function shopAgain(){
-//     inquirer.prompt([
-//         name: "shopAgain", 
-//         type: "input"
-//     ]).then()
-// }
+ }
