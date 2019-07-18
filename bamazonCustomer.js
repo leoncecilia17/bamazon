@@ -48,6 +48,7 @@ function userSelection() {
             if (error) throw error;
             if (response.length === 0) {
                 console.log("That product id does not exist. Please enter another id number.");
+                userSelection(); 
             }
             else {
                 stockUpdate(response[0], input.idSelection, input.quantitySelection);
