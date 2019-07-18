@@ -11,3 +11,8 @@ If the user picks an item that doesn't exist, they will be asked to pick another
 After the user has entered an existing item id and quantity, the application will fulfill the order. Once the order has been fulfilled, the SQL database will be updated to reflect the new stocks. 
 
 Lastly, the user will be notified the total cost of their purchase. Then, they will be prompted if they would like to make another purchase or end their shopping session. 
+
+
+![](images/mysql.bamazon.png) 
+
+![](images/bamazonrec.mov)
