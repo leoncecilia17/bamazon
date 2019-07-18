@@ -64,7 +64,7 @@ function stockUpdate(input,id, quantitySelection ) {
       var query=  connection.query("UPDATE products SET stock_quantity=? WHERE item_id=?", [newStockQuantity, id.trim()], function (error, response) {
             if (error) throw error;
             console.log("Your sale total is: " + "$" + input.price * quantitySelection);
-            viewProducts();
+            shopAgain(); 
         });
     }
     else {
@@ -72,3 +72,24 @@ function stockUpdate(input,id, quantitySelection ) {
         userSelection();
     }
  }
+
+ function shopAgain(){
+     inquirer.prompt([
+         {
+            type: "confirm", 
+            message: "Would you like to purchase something else?",
+            name: "again", 
+            default: true 
+         }
+     ]).then(function(answer){
+         if (answer.again === true){
+             viewProducts(); 
+             console.log("Let's look at some products!")
+         }
+         else {
+             console.log ("Have a great day!")
+         }
+     });
+ }
+
+ 
